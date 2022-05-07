@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>顧客一覧</title>
+</head>
+<body>
+    <a th:href="@{/create}">顧客登録</a>
+    <hr>
+    <h1>顧客一覧</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+        </tr>
+        <!-- ポイント1 -->
+        <tr th:each="customer : ${customers}">
+            <!-- ポイント2 -->
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.email}"></td>
+        </tr>
+    </table>
+</body>
+</html>
+
+<!-- GITバージョン１ -->
