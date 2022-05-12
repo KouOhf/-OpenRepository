@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+<title>顧客一覧</title>
+</head>
+<body>
+	<div class="container">
+		
+		<div class="my-5">	<!-- マージンを上下に設定 -->
+		<a class="btn btn-primary" th:href="@{/create}">顧客登録</a>	<!-- 青色ボタンを設定 -->
+		</div>
+		
+			<hr>
+			<h1 class="my-2">顧客一覧</h1>
+			<!-- マウスホバー テーブル幅を画面の50％に設定  -->
+			<table class="table table-borderd table-striped">
+				<tr>
+					<th>ID</th>
+					<th>名前</th>
+					<th>メールアドレス</th>
+					<th>性別</th>
+					<th colspan="2">編集</th> <!-- 2列（編集と削除）を結合 -->
+				</tr>
+				<tr th:each="customer : ${customers}">
+					<td th:text="${customer.id}"></td>
+					<td th:text="${customer.name}"></td>
+					<td th:text="${customer.email}"></td>
+					<td th:text="${genderMap.get('__${customer.gender}__')}"></td>
+					<td>
+						<form th:action="@{/edit}" method="post">
+							<input type="submit" class="btn btn-outline-primary" name="edit" value="編集">
+							<input type="hidden" name="id" th:value="${customer.id}">
+						</form>
+					</td>
+					<td>
+						<form th:action="@{/edit}" method="post">
+							<input type="submit" class="btn btn-outline-danger" name="delete" value="削除">
+							<input type="hidden" name="id" th:value="${customer.id}">
+						</form>
+					</td>
+				</tr>
+			</table>
+	</div>
+		
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
