@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+<title>顧客登録</title>
+</head>
+<body>
+	<div class="container">
+		<h1 class="my-5">顧客登録</h1>
+		<form th:action="@{/create}" th:object="${customerForm}" method="post">
+			<table class="table table-bordered table-hover col-6">
+				<tr class="form-group">
+					<th class="align-middle">名前</th>
+					<td><input type="text" class="form-control" name="name" th:field="*{name}" th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'">
+					<span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></td>
+				</tr>
+				
+				<tr class="form-group">
+					<th class="align-middle">メールアドレス</th>
+					<td><input type="text" class="form-control" name="email" th:field="*{email}">
+					<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></td>
+				</tr>
+			</table>
+			
+			<input type="submit" class="btn btn-primary mt-3" value="登録">
+		</form>
+	</div>
+	
+	<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
